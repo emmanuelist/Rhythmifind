@@ -41,10 +41,12 @@ Assigning roles based on expertise ensures efficiency. Godwin's proficiency in h
 - Tailwind CSS for styling
 - Supabase for database management
 
+
 ### Database
 
 - Postgres for structured data storage
 - Supabase for real-time database management and serverless backend
+- Supabase for Restful API
 
 ### Trade-offs and Decisions
 
