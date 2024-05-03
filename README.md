@@ -52,7 +52,7 @@ Assigning roles based on expertise ensures efficiency. Godwin's proficiency in h
 
 - React vs. Vue.js: Chose React for its robust ecosystem and component-based architecture.
 - Tailwind CSS vs. Bootstrap: Preferring Tailwind for flexibility and customization.
-
+- Tailwind CSS vs. Traditional CSS: Tailwind CSS offers UI development with predefined classes.
 ---
 
 ## Challenge Statement
