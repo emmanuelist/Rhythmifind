@@ -128,6 +128,7 @@ Comparison with Spotify and Pandora, focusing on user-centric approach and trans
 ---
 
 ## Data Modeling
+- Visual representaion of the project structure
 
 ### Entity Relationship Diagram (ERD)
 
