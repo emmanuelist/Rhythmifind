@@ -121,7 +121,6 @@ Comparison with Spotify and Pandora, focusing on user-centric approach and trans
 
 ### Third-Party APIs
 
-- Spotify Web API
 - Stripe API
 - Supabase Auth API
 - Supabase Database API
