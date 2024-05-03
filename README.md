@@ -39,6 +39,7 @@ Assigning roles based on expertise ensures efficiency. Godwin's proficiency in h
 - HTML/CSS for frontend structure and styling
 - React as the frontend framework
 - Tailwind CSS for styling
+- Supabase for database management
 
 ### Database
 
