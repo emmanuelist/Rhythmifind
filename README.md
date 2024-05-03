@@ -137,4 +137,4 @@ Below is the Entity Relationship Diagram illustrating the data model for Rhythmi
 ![Data Modelling](https://github.com/emmanuelist/alx-higher_level_programming/assets/72014364/daa8935c-e792-4b83-8d1d-989991e7cb46)
 
 ## About Author
-- Emmanuel Paul and Godwin Chukwuma are students of software engineering at ALX, actively engaged in developing their skills in the field.
+Emmanuel Paul and Godwin Chukwuma are students of software engineering at ALX, actively engaged in developing their skills in the field.
