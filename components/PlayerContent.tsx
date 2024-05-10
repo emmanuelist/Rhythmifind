@@ -1,7 +1,5 @@
-//"use client";
+"use client";
 
-//import useSound from "use-sound";
-/*
 import { useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
@@ -9,6 +7,10 @@ import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 
 import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
+
+//import useSound from 'use-sound';
+
+import useSound from "use-sound";
 
 import LikeButton from "./LikeButton";
 import MediaItem from "./MediaItem";
@@ -195,4 +197,4 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   );
 };
 
-export default PlayerContent;*/
+export default PlayerContent;
