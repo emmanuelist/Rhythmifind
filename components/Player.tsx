@@ -1,5 +1,4 @@
-/*
-   "use client";
+"use client";
 
 import useGetSongById from "@/hooks/useGetSongById";
 import useLoadSongUrl from "@/hooks/useLoadSongUrl";
@@ -25,4 +24,4 @@ const Player = () => {
 };
 
 export default Player;
-*/
+

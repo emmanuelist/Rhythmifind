@@ -40,8 +40,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
   return (
     <div
       className={twMerge(
-        `flex h-full`,
-        player.activeId && "h-[calc(100%-80px)]"
+        `flex h-[100vh]`
+        // player.activeId && "h-[calc(100%-80px)]"
       )}
     >
       <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
