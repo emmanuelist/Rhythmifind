@@ -1,40 +1,64 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { BiSearch } from "react-icons/bi";
-import { HiHome } from "react-icons/hi";
-import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
-import { twMerge } from "tailwind-merge";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { FaUserAlt } from "react-icons/fa";
+/** 
+ * Placeholder comment: "use client".
+ * This comment is a placeholder and does not affect the code execution.
+ */
 
-import Button from "./Button";
+// Import necessary modules and components
+import { useRouter } from "next/navigation"; // Import useRouter hook from Next.js for routing
+import { BiSearch } from "react-icons/bi"; // Import BiSearch icon from react-icons/bi
+import { HiHome } from "react-icons/hi"; // Import HiHome icon from react-icons/hi
+import { RxCaretLeft, RxCaretRight } from "react-icons/rx"; // Import RxCaretLeft and RxCaretRight icons from react-icons/rx
+import { twMerge } from "tailwind-merge"; // Import twMerge function from tailwind-merge
+import { useSupabaseClient } from "@supabase/auth-helpers-react"; // Import useSupabaseClient hook from @supabase/auth-helpers-react
+import { FaUserAlt } from "react-icons/fa"; // Import FaUserAlt icon from react-icons/fa
+import Button from "./Button"; // Import Button component
+import useAuthModal from "@/hooks/useAuthModal"; // Import useAuthModal hook
+import { useUser } from "@/hooks/useUser"; // Import useUser hook
+import toast from "react-hot-toast"; // Import toast function from react-hot-toast
+import usePlayer from "@/hooks/usePlayer"; // Import usePlayer hook
 
-import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
-import toast from "react-hot-toast";
-import usePlayer from "@/hooks/usePlayer";
-
+/** 
+ * Props interface for Header component.
+ * @interface HeaderProps
+ * @property {React.ReactNode} children - Children nodes.
+ * @property {string} [className] - Optional class name.
+ */
 interface HeaderProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode; 
+  className?: string; 
 }
 
+/** 
+ * Header component.
+ * @function Header
+ * @param {HeaderProps} props - Component props.
+ * @returns {JSX.Element} Rendered Header component.
+ */
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
-  const authModal = useAuthModal();
-  const router = useRouter();
-  const player = usePlayer();
+  // Initialize hooks and variables
+  const authModal = useAuthModal(); // Initialize useAuthModal hook for authentication modal
+  const router = useRouter(); // Initialize useRouter hook for routing
+  const player = usePlayer(); // Initialize usePlayer hook for player functionality
 
-  const supabaseClient = useSupabaseClient();
-  const { user } = useUser();
+  const supabaseClient = useSupabaseClient(); // Initialize useSupabaseClient hook for Supabase client
+  const { user } = useUser(); // Initialize useUser hook for user authentication
 
-  const handleLogout = async () => {
+  /** 
+   * Function to handle logout.
+   * @function handleLogout
+   * @returns {Promise<void>} Promise that resolves when logout is completed.
+   */
+  const handleLogout = async (): Promise<void> => {
+    // Sign out user from Supabase
     const { error } = await supabaseClient.auth.signOut();
     /* Reset any playing song */
     player.reset();
-    // Reset any playing song in the future
+    // Reset router to refresh page
     router.refresh();
 
+    // Show success or error message
     if (error) {
       toast.error(error.message);
     } else {
@@ -42,6 +66,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
     }
   };
 
+  // Render Header component
   return (
     <div
       className={twMerge(
@@ -74,6 +99,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         </div>
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
+            // Render logout and profile buttons if user is logged in
             <div className="flex gap-x-4 items-center">
               <Button onClick={handleLogout} className="bg-white px-6 py-2">
                 Logout
@@ -86,6 +112,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </Button>
             </div>
           ) : (
+            // Render signup and login buttons if user is not logged in
             <>
               <div>
                 <Button
@@ -112,4 +139,5 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   );
 };
 
+// Export the Header component as the default export
 export default Header;

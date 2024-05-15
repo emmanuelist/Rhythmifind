@@ -1,16 +1,24 @@
+// Use client
 "use client";
 
-import * as RadixSlider from "@radix-ui/react-slider";
+import * as RadixSlider from "@radix-ui/react-slider"; // Import RadixSlider components from @radix-ui/react-slider
 
 interface SliderProps {
-  value?: number;
-  onChange?: (value: number) => void;
+  value?: number; // Value of the slider
+  onChange?: (value: number) => void; // Function to handle slider value change
 }
 
+/**
+ * Slider Component
+ * @param {SliderProps} props - The props for the Slider component.
+ * @returns {JSX.Element} - The rendered Slider component.
+ */
 const Slider: React.FC<SliderProps> = ({ value = 1, onChange }) => {
+  // Function to handle slider value change
   const handleChange = (newValue: number[]) => {
     onChange?.(newValue[0]);
   };
+
   return (
     <RadixSlider.Root
       className="relative flex items-center select-none touch-none w-full h-10"
@@ -27,4 +35,4 @@ const Slider: React.FC<SliderProps> = ({ value = 1, onChange }) => {
   );
 };
 
-export default Slider;
+export default Slider; // Export Slider component

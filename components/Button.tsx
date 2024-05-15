@@ -1,10 +1,14 @@
+// Import necessary libraries
 import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
+// Define the interface for the Button component's props
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
+// The Button component is a button component that applies some default styles
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, disabled, type = "button", ...props }, ref) => {
+  ({ className, children, disabled, type = "button",...props }, ref) => {
+    // Render the Button component with the default styles and any additional classes passed in
     return (
       <button
         type={type}
@@ -21,6 +25,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+// Set the display name for the Button component
 Button.displayName = "Button";
 
+// Export the Button component
 export default Button;
