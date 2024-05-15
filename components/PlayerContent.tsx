@@ -7,9 +7,6 @@ import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 
 import { Song } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
-
-//import useSound from 'use-sound';
-
 import useSound from "use-sound";
 
 import LikeButton from "./LikeButton";
@@ -21,16 +18,22 @@ interface PlayerContentProps {
   songUrl: string;
 }
 
+/**
+ * PlayerContent Component
+ * @param {PlayerContentProps} props - The props for the PlayerContent component.
+ * @returns {JSX.Element} - The rendered PlayerContent component.
+ */
 const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
-  //console.log("songUrl:", songUrl);
-  //console.log("song:", song);
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Determine play/pause icon based on playback state
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
+  // Determine volume icon based on mute state
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
+  // Play next song in the playlist
   const onPlayNext = () => {
     if (player.ids.length === 0) {
       return;
@@ -46,6 +49,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     player.setId(nextSong);
   };
 
+  // Play previous song in the playlist
   const onPlayPrevious = () => {
     if (player.ids.length === 0) {
       return;
@@ -61,6 +65,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     player.setId(previousSong);
   };
 
+  // Use the useSound hook to play audio
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
@@ -72,6 +77,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     format: ["mp3"],
   });
 
+  // Start playing the sound on component mount
   useEffect(() => {
     sound?.play();
 
@@ -80,6 +86,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     };
   }, [sound]);
 
+  // Toggle play/pause state
   const handlePlay = () => {
     if (!isPlaying) {
       play();
@@ -88,6 +95,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     }
   };
 
+  // Toggle mute state
   const toggleMute = () => {
     if (volume === 0) {
       setVolume(1);
@@ -100,89 +108,43 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
       <div className="flex w-full justify-start">
         <div className="flex items-center gap-x-4">
+          {/* Display media item and like button */}
           <MediaItem data={song} />
           <LikeButton songId={song.id} />
         </div>
       </div>
 
-      <div
-        className="
-            flex 
-            md:hidden 
-            col-auto 
-            w-full 
-            justify-end 
-            items-center
-          "
-      >
+      {/* Display play/pause button (for mobile view) */}
+      <div className="flex md:hidden col-auto w-full justify-end items-center">
         <div
           onClick={handlePlay}
-          className="
-              h-10
-              w-10
-              flex 
-              items-center 
-              justify-center 
-              rounded-full 
-              bg-white 
-              p-1 
-              cursor-pointer
-            "
+          className="h-10 w-10 flex items-center justify-center rounded-full bg-white p-1 cursor-pointer"
         >
           <Icon size={30} className="text-black" />
         </div>
       </div>
 
-      <div
-        className="
-            hidden
-            h-full
-            md:flex 
-            justify-center 
-            items-center 
-            w-full 
-            max-w-[722px] 
-            gap-x-6
-          "
-      >
+      {/* Display playback controls (for desktop view) */}
+      <div className="hidden md:flex h-full justify-center items-center w-full max-w-[722px] gap-x-6">
         <AiFillStepBackward
           onClick={onPlayPrevious}
           size={30}
-          className="
-              text-neutral-400 
-              cursor-pointer 
-              hover:text-white 
-              transition
-            "
+          className="text-neutral-400 cursor-pointer hover:text-white transition"
         />
         <div
           onClick={handlePlay}
-          className="
-              flex 
-              items-center 
-              justify-center
-              h-10
-              w-10 
-              rounded-full 
-              bg-white 
-              p-1 
-              cursor-pointer
-            "
+          className="flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer"
         >
           <Icon size={30} className="text-black" />
         </div>
         <AiFillStepForward
           onClick={onPlayNext}
           size={30}
-          className="
-              text-neutral-400 
-              cursor-pointer 
-              hover:text-white 
-              transition
-            "
+          className="text-neutral-400 cursor-pointer hover:text-white transition"
         />
       </div>
 
+      {/* Display volume controls (for desktop view) */}
       <div className="hidden md:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[120px]">
           <VolumeIcon
