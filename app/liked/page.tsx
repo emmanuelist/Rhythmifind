@@ -4,10 +4,24 @@ import getLikedSongs from "@/actions/getLikedSongs";
 import Header from "@/components/Header";
 import LikedContent from "./components/LikedContent";
 
+/**
+ * The revalidate value for the component
+ */
 export const revalidate = 0;
 
+/**
+ * The Liked component displays the list of liked songs
+ * @returns The JSX.Element to be rendered
+ */
 const Liked = async () => {
+  /**
+   * Fetch the list of liked songs
+   */
   const songs = await getLikedSongs();
+
+  /**
+   * Render the component
+   */
   return (
     <div className="bg-slate-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
@@ -35,4 +49,7 @@ const Liked = async () => {
   );
 };
 
+/**
+ * Export the Liked component
+ */
 export default Liked;

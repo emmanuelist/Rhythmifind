@@ -1,5 +1,6 @@
 "use client";
 
+// Import necessary hooks and components
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -9,22 +10,30 @@ import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 
+// Define the interface for the LikedContent component's props
 interface LikedContentProps {
   songs: Song[];
 }
 
+// The LikedContent component displays the list of liked songs
 const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
+  // Use the useRouter hook to access the router object
   const router = useRouter();
+
+  // Use the useUser hook to access the user object and the isLoading state
   const { isLoading, user } = useUser();
 
+  // Use the useOnPlay hook to handle playing a song
   const onPlay = useOnPlay(songs);
 
+  // Use the useEffect hook to redirect the user to the home page if they are not logged in
   useEffect(() => {
-    if (!isLoading && !user) {
+    if (!isLoading &&!user) {
       router.replace("/");
     }
   }, [isLoading, user, router]);
 
+  // Check if there are any liked songs
   if (songs.length === 0) {
     return (
       <div
@@ -42,6 +51,7 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
     );
   }
 
+  // Render the list of liked songs
   return (
     <div className="flex flex-col gap-y-2 w-full p-6">
       {songs.map((song) => (
@@ -56,4 +66,5 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
   );
 };
 
+// Export the LikedContent component
 export default LikedContent;

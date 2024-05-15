@@ -1,13 +1,18 @@
+// Import necessary actions and components
 import getSongs from "@/actions/getSongs";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 import PageContent from "./components/PageContent";
 
+// The revalidate value for the component
 export const revalidate = 0;
 
+// The Home component displays the home page
 export default async function Home() {
+  // Fetch the list of songs
   const songs = await getSongs();
 
+  // Render the component
   return (
     <div className="bg-slate-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
