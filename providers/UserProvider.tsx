@@ -7,6 +7,11 @@ import { MyUserContextProvider } from "@/hooks/useUser"; // Import MyUserContext
  * to provide user authentication and related data throughout the app
  * Return: Render MyUserContextProvider with children
  */
+
+interface UserProviderProps {
+  children: React.ReactNode;
+}
+
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   return <MyUserContextProvider>{children}</MyUserContextProvider>;
 };
