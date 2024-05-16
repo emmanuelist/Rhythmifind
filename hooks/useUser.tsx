@@ -1,13 +1,12 @@
-import { Subscription, UserDetails } from "@/types";
-
+import { createContext, useEffect, useState } from "react";
+import { UserDetails, Subscription } from "@/types"; // Import types
 import { User } from "@supabase/auth-helpers-nextjs";
 import {
   useSessionContext,
   useUser as useSupaUser,
 } from "@supabase/auth-helpers-react";
-import React from "react";
-import { createContext, useEffect, useState } from "react";
 
+// Define the type for the UserContext
 type UserContextType = {
   accessToken: string | null;
   user: User | null;
@@ -16,32 +15,39 @@ type UserContextType = {
   subscription: Subscription | null;
 };
 
+// Create the UserContext
 export const UserContext = createContext<UserContextType | undefined>(
   undefined
 );
 
+// Define props interface
 export interface Props {
   [propName: string]: any;
 }
 
+// UserContextProvider component
 export const MyUserContextProvider = (props: Props) => {
-  const {
-    session,
-    isLoading: isLoadingUser,
-    supabaseClient: supabase,
-  } = useSessionContext();
+  // Destructure values from useSessionContext and useSupaUser hooks
+  const { session, isLoading: isLoadingUser, supabaseClient: supabase } =
+    useSessionContext();
   const user = useSupaUser();
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
+
+  // Function to get user details
   const getUserDetails = () => supabase.from("users").select("*").single();
+
+  // Function to get user subscription
   const getSubscription = () =>
     supabase
       .from("subscription")
       .select("*, price(*, product(*))")
       .in("status", ["trialing", "active"])
       .single();
+
+  // Effect hook to fetch user details and subscription
   useEffect(() => {
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsLoadingData(true);
@@ -68,6 +74,7 @@ export const MyUserContextProvider = (props: Props) => {
     }
   }, [user, isLoadingUser]);
 
+  // Value for the context
   const value = {
     accessToken,
     user,
@@ -79,6 +86,7 @@ export const MyUserContextProvider = (props: Props) => {
   return <UserContext.Provider value={value} {...props} />;
 };
 
+// Custom hook to use UserContext
 export const useUser = () => {
   const context = React.useContext(UserContext);
   if (context === undefined) {
