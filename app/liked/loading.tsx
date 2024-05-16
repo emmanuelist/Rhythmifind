@@ -19,10 +19,7 @@ const Loading = () => {
    */
   return (
     <Box className="h-full flex items-center justify-center">
-      /**
-       * Use the BounceLoader component from react-spinners
-       * with a custom color and size
-       */
+      {/* Use the BounceLoader component from react-spinnerswith a custom color and size */}
       <BounceLoader color="#22c55e" size={40} />
     </Box>
   );

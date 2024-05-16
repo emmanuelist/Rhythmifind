@@ -5,6 +5,7 @@ import {
   useSessionContext,
   useUser as useSupaUser,
 } from "@supabase/auth-helpers-react";
+import React from "react";
 
 // Define the type for the UserContext
 type UserContextType = {

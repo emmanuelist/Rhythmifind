@@ -18,12 +18,8 @@ const Error = () => {
    */
   return (
     <Box className="h-full flex items-center justify-center">
-      /**
-       * Display the error message in a neutral color
-       */
-      <div className="text-neutral-400">
-        Something went wrong
-      </div>
+      {/* Display the error message in a neutral color */}
+      <div className="text-neutral-400">Something went wrong</div>
     </Box>
   );
 };

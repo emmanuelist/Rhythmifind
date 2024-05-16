@@ -26,8 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
   const pathname = usePathname(); // use usePathname hook from next/navigation
   const player = usePlayer(); // use usePlayer hook from "@/hooks/usePlayer"
   
-  // Use the useClient hook
-  const client = useClient();
+
 
   // Define sidebar routes
   const routes = useMemo(() => [
