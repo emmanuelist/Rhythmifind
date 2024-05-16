@@ -1,13 +1,14 @@
 "use client";
 
-import { MyUserContextProvider } from "@/hooks/useUser";
+import { MyUserContextProvider } from "@/hooks/useUser"; // Import MyUserContextProvider from useUser hook
 
-interface UserProviderProps {
-  children: React.ReactNode;
-}
-
+/** 
+ * UserProvider component wraps the application with the user context provider 
+ * to provide user authentication and related data throughout the app
+ * Return: Render MyUserContextProvider with children
+ */
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   return <MyUserContextProvider>{children}</MyUserContextProvider>;
 };
 
-export default UserProvider;
+export default UserProvider; // Export UserProvider component

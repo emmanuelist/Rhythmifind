@@ -1,7 +1,12 @@
 "use client";
 
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast"; // Import Toaster component from react-hot-toast
 
+/** 
+ * ToasterProvider component provides custom styling options for toast notifications
+ *  Custom styling options for toasts
+ * 
+*/
 const ToasterProvider = () => {
   return (
     <Toaster
@@ -15,4 +20,4 @@ const ToasterProvider = () => {
   );
 };
 
-export default ToasterProvider;
+export default ToasterProvider; // Export ToasterProvider component
